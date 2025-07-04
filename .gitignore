@@ -1,0 +1,6 @@
+*.ipynb
+*.pyc
+temp/
+
+# Ignore dataset folder
+OscGrid_dataset/
