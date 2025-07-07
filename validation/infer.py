@@ -27,7 +27,7 @@ if __name__ == "__main__":
         dataset,
         batch_size=BATCH_SIZE,
         shuffle=False,
-        num_workers=4,  # количество subprocess-воркеров
+        num_workers=4,  # num of subprocess-workers
         pin_memory=True,  # ускоряет работу на CUDA
     )
 
