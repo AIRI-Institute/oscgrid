@@ -13,10 +13,13 @@ python scripts/create_csv.py
 ```
 To create a CSV with unlabeled oscillograms, use the following parameters:
 
-frequency - Frequency of the network (50 or 60 Hz)
-sampling_rate - Sampling rate in Hz
-perturbations_only - Only process files listed in perturbations CSV
-normalize - Normalize signals using norm_coef file
+<em>frequency</em> - Frequency of the network (50 or 60 Hz)
+
+<em>sampling_rate</em> - Sampling rate in Hz
+
+<em>perturbations_only</em> - Only process files listed in perturbations CSV
+
+<em>normalize</em> - Normalize signals using norm_coef file
 
 Example:
 
