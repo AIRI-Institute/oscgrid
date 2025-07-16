@@ -1,25 +1,25 @@
 # A dataset of real-world oscillograms from electrical power grids (OscGrid)
 
-This repository provides code for working with the OscGrid dataset.
+This repository provides code for working with the [OscGrid](https://doi.org/10.6084/m9.figshare.28465427.v5) dataset.
 
 ## CSV creation from the raw data
 
-Create csv:
+Download the dataset into the repository folder and extract all the contained archives.
+
+Create csv with labeled oscillograms:
 
 ```
-python create_csv.py
+python scripts/create_csv.py
 ```
+To create a CSV with unlabeled oscillograms, use the following parameters:
 
-## Autoencoder training and data visualization
+frequency - Frequency of the network (50 or 60 Hz)
+sampling_rate - Sampling rate in Hz
+perturbations_only - Only process files listed in perturbations CSV
+normalize - Normalize signals using norm_coef file
 
-training step:
-
-```
-python train.py
-```
-
-visualization step:
+Example:
 
 ```
-python visualize.py
+python scripts/create_csv.py --frequency 50 --sampling_rate 1800 --perturbations_only --normalize
 ```
