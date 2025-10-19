@@ -27,8 +27,8 @@ if __name__ == "__main__":
         dataset,
         batch_size=BATCH_SIZE,
         shuffle=False,
-        num_workers=4,  # num of subprocess-workers
-        pin_memory=True,  # ускоряет работу на CUDA
+        num_workers=4,  # number of subprocess workers
+        pin_memory=True,  # speeds up work on CUDA
     )
 
     run_id = "d28b1f6a5d8944aea4f168cb113d43c1"
@@ -45,7 +45,6 @@ if __name__ == "__main__":
         autoencoder.encoder_fc,
     )
 
-    # print(model)
     model.eval()
 
     names_of_latent = [f"l{i}" for i in range(BOTTLENECK_DIM)]
@@ -55,24 +54,17 @@ if __name__ == "__main__":
 
     with torch.no_grad():
         for i, (features, targets) in enumerate(dataloader):
-            # features: (batch, features, seq_len) → (batch, seq_len, features) если нужно
             batch = features.to(device).permute(0, 2, 1)
-            # forward
-            latents = model(batch)  # tensor [batch, BOTTLENECK_DIM]
-            latents = latents.cpu().numpy()  # numpy [batch, BOTTLENECK_DIM]
-            targets = targets.numpy()  # numpy [batch,]
-
+            latents = model(batch)
+            latents = latents.cpu().numpy()
+            targets = targets.numpy()
             latent_list.append(latents)
             target_list.append(targets)
             if i % 100 == 0:
                 print(f"Processed batch {i}/{len(dataloader)}")
 
-    # объединяем все батчи
-    all_latents = np.vstack(latent_list)  # shape [N_total, BOTTLENECK_DIM]
-    all_targets = np.concatenate(target_list)  # shape [N_total,]
-
-    # строим DataFrame один раз
+    all_latents = np.vstack(latent_list)
+    all_targets = np.concatenate(target_list)
     df_latent = pd.DataFrame(all_latents, columns=names_of_latent)
     df_latent["target"] = all_targets
     df_latent.to_csv("full_latents.csv")
-pass
