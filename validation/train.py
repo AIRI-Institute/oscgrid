@@ -316,27 +316,6 @@ def load_data(file_csv):
     # Check how data is distributed
     print(result)
 
-    #     split  target  n_measurements  percent
-    # 0     del       0              82     3.91
-    # 1     del       1            1607    76.63
-    # 2     del       2              56     2.67
-    # 3     del       3             352    16.79
-
-    # 4    test       0           74354    54.32
-    # 5    test       1            7524     5.50
-    # 6    test       2           44612    32.59
-    # 7    test       3           10399     7.60
-
-    # 8   train       0          347159    47.47
-    # 9   train       1           35147     4.81
-    # 10  train       2          208341    28.49
-    # 11  train       3          140601    19.23
-
-    # 12    val       0           74342    48.93
-    # 13    val       1            7501     4.94
-    # 14    val       2           44605    29.36
-    # 15    val       3           25480    16.77
-
     cols_to_keep = ["block_id", "target"] + FEATURE_NAMES
 
     df_train = (
@@ -379,10 +358,6 @@ def load_data(file_csv):
     df_val.update(df_val_scaled)
     df_test.update(df_test_scaled)
 
-    # scaler.mean_
-    # array([ 0.00234656,  0.00602454,  0.02750021,  0.02089018, -0.01413002])
-    # scaler.scale_
-    # array([ 1.20476664,  1.19734593, 71.55793895, 74.9240093 , 75.38762804])
     return df_train, df_val, df_test
 
 
@@ -450,38 +425,13 @@ if __name__ == "__main__":
 
     df_train, df_val, df_test = load_data(file_csv)
 
-    # Get class labels from training set
-    # train_labels = np.array(df_train["target"].values)
-
-    # Compute class weights
-    # class_weights = compute_class_weight(
-    #     class_weight="balanced",
-    #     classes=np.unique(train_labels),
-    #     y=train_labels,
-    # )
-
-    # class_weights
-    # array([0.52659444, 5.20135431, 0.87746531, 1.30021835])
-
-    # Convert to tensor and send to target device
-    # class_weights_tensor = torch.FloatTensor(class_weights).to(device)
-
     train_dataset = CustomDataset(df_train)
     val_dataset = CustomDataset(df_val)
-    # test_dataset = CustomDataset(df_test)
 
     model = Autoencoder()
     model.to(device)
 
-    # targets = dataset.data["target"]
-    # num_classes = len(np.unique(targets))
-    # weights = {
-    #     target: len(dataset) / value / num_classes
-    #     for target, value in dict(targets.value_counts()).items()
-    # }
-    # print(f"weights = {weights}")
-
-    criterion = SpectralLoss()  # weights=weights)
+    criterion = SpectralLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)
     dataset = train_dataset
 
@@ -495,7 +445,7 @@ if __name__ == "__main__":
     val_dataloader = DataLoader(
         val_dataset,
         batch_size=BATCH_SIZE * 128,
-        shuffle=False,  # no shuffling
+        shuffle=False, 
         num_workers=4,
         pin_memory=True,
     )
