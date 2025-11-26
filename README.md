@@ -17,7 +17,7 @@ To create a CSV with unlabeled oscillograms, use the following parameters:
 
 <em>sampling_rate</em> - Sampling rate in Hz
 
-<em>perturbations_only</em> - Only process files listed in perturbations CSV
+<em>perturbations_only</em> - Process files listed in perturbations CSV only
 
 <em>normalize</em> - Normalize signals using norm_coef file
 
