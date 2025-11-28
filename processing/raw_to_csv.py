@@ -187,6 +187,7 @@ class RawToCSV():
             bus_df = raw_df.loc[:, list(columns)]
             bus_df.insert(0, 'file_name', [file_name[:-4] + "_" + bus] * bus_df.shape[0])
             bus_df = self.rename_bus_columns(bus_df)
+            print(file_name)
             buses_df = pd.concat([buses_df, bus_df], axis=0,
                                  ignore_index=False)
         return buses_df
