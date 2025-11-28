@@ -50,12 +50,19 @@ def get_short_names_ml_signals(use_operational_switching: bool = True, use_abnor
 
     ml_emergency_event = [
         # --- Emergency events ----
-        'ML_3',    # Emergency events, without clarification
-        'ML_3_1',  # An accident due to incorrect operation of the device, without clarification
-        'ML_3_2',  # Terminal malfunction
-        'ML_3_3',  # Two-phase earth fault
-        'ML_3_4',  # Phase break in voltage circuits
-        'ML_3_5',  # Signal noise resulting in failure to operate
+        'ML_3',      # Emergency events, without clarification
+        'ML_3_1',    # An accident due to incorrect operation of the device, without clarification
+        'ML_3_2',    # Terminal malfunction
+        'ML_3_3',    # Ground fault without specifying phases
+        'ML_3_3_1',  # Single-phase earth fault
+        'ML_3_3_2',  # Two-phase earth fault
+        'ML_3_3_3',  # Three-phase earth fault
+        'ML_3_4',    # Phase breakage
+        'ML_3_4_1',  # Phase interruption in current circuits
+        'ML_3_4_2',  # Phase interruption in voltage circuits
+        'ML_3_5',    # Signal noise resulting in failure to operate
+        'ML_3_6',    # Power off
+        'ML_3_6_1',  # Power off with a powerful motor on the section
     ]
 
     ml_signals = []
@@ -140,12 +147,19 @@ def get_ml_signals(i_bus, use_operational_switching=True, use_abnormal_event=Tru
 
     ml_emergency_event = {
         # --- Emergency events ----
-        f'MLsignal_{i_bus}_3',    # Emergency events, without clarification
-        f'MLsignal_{i_bus}_3_1',  # An accident due to incorrect operation of the device, without clarification
-        f'MLsignal_{i_bus}_3_2',  # Terminal malfunction
-        f'MLsignal_{i_bus}_3_3',  # Two-phase earth fault
-        f'MLsignal_{i_bus}_3_4',  # Phase break in voltage circuits
-        f'MLsignal_{i_bus}_3_5'   # Signal noise resulting in failure to operate
+        f'MLsignal_{i_bus}_3',      # Emergency events, without clarification
+        f'MLsignal_{i_bus}_3_1',    # An accident due to incorrect operation of the device, without clarification
+        f'MLsignal_{i_bus}_3_2',    # Terminal malfunction
+        f'MLsignal_{i_bus}_3_3',    # Ground fault without specifying phases
+        f'MLsignal_{i_bus}_3_3_1',  # Single-phase earth fault
+        f'MLsignal_{i_bus}_3_3_2',  # Two-phase earth fault
+        f'MLsignal_{i_bus}_3_3_3',  # Three-phase earth fault
+        f'MLsignal_{i_bus}_3_4',    # Phase breakage
+        f'MLsignal_{i_bus}_3_4_1',  # Phase interruption in current circuits
+        f'MLsignal_{i_bus}_3_4_2',  # Phase interruption in voltage circuits
+        f'MLsignal_{i_bus}_3_5',    # Signal noise resulting in failure to operate
+        f'MLsignal_{i_bus}_3_6',    # Power off
+        f'MLsignal_{i_bus}_3_6_1',  # Power off with a powerful motor on the section
     }
 
     ml_signals = set()

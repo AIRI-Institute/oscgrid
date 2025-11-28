@@ -458,7 +458,7 @@ def parse_args():
     parser.add_argument('--epochs', type=int, default=EPOCHS, help='Number of epochs')
     parser.add_argument('--batch_size', type=int, default=BATCH_SIZE, help='Batch size')
     parser.add_argument('--learning_rate', type=float, default=LEARNING_RATE, help='Learning rate')
-    parser.add_argument('--data_path', type=str, default="OscGrid_dataset/CSV_format_v1.1/labeled.csv",
+    parser.add_argument('--data_path', type=str, default="OscGrid_dataset/CSV_format_v1.2/labeled.csv",
                        help='Path to CSV data file')
     parser.add_argument('--stride', type=int, default=10,
                        help='Stride for dataset sampling (e.g., 10 for every 10th point)')
