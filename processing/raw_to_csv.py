@@ -177,7 +177,7 @@ class RawToCSV():
         for bus, cols in self.analog_names_dict.items():
             cols = raw_cols.intersection(cols)
             for i_bus in self.uses_buses:
-                if bus[-1] == i_bus or bus[-2] == i_bus:
+                if len(bus[4:]) < 2 and (bus[-1] == i_bus or bus[-2] == i_bus):
                     ml_all = get_ml_signals(i_bus)
                     raw_ml = raw_cols.intersection(ml_all)
                     cols = cols.union(raw_ml)
