@@ -1,10 +1,16 @@
 import matplotlib.pyplot as plt
+import matplotlib
 import numpy as np
 import pandas as pd
 from sklearn.manifold import TSNE
 from train import (
     BOTTLENECK_DIM,
 )
+
+
+matplotlib.rcParams['font.family'] = 'sans-serif'
+matplotlib.rcParams['font.sans-serif'] = ['Liberation Sans']
+
 
 SEED = 42
 
@@ -67,7 +73,7 @@ for i in range(4):
         x[classes == i],
         y[classes == i],
         c=colors[i],
-        s=i + 1,
+        s=5,
         label=class_names[i],
     )
 

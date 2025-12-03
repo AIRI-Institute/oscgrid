@@ -21,7 +21,7 @@ if __name__ == "__main__":
     file_csv = "OscGrid_dataset/CSV_format_v1.1/labeled.csv"
     df_train, df_val, df_test = load_data(file_csv)
 
-    dataset = CustomDataset(df_test)
+    dataset = CustomDataset(df_test, 10)
 
     dataloader = DataLoader(
         dataset,
