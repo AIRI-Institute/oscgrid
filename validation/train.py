@@ -30,12 +30,12 @@ BATCH_SIZE = 128
 EPOCHS = 100
 LEARNING_RATE = 1e-03
 MAX_GRAD_NORM = 10
-SEED = 23
+SEED = 443
 # dataset columns used for model training:
 SUBSET = ["IA", "IC", "UA BB", "UB BB", "UC BB"]
 # new names for selected columns
 FEATURE_NAMES = ["IA", "IC", "UA", "UB", "UC"]
-RATIOS = {"train": 0.50, "val": 0.20, "test": 0.30}
+RATIOS = {"train": 0.60, "val": 0.10, "test": 0.30}
 
 # Names of problematic files with duplicate data
 # Exclude them from the training dataset:
@@ -608,7 +608,7 @@ if __name__ == "__main__":
     val_accuracies = []
     best_val_accuracy = 0.0
     patience_counter = 0
-    patience = 30  # Early stopping patience
+    patience = 10  # Early stopping patience
 
     for epoch in range(args.epochs):
         model.train()
